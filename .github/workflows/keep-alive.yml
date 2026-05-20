@@ -1,0 +1,17 @@
+name: Supabase Anti-Pause Ping
+
+# 設定排程：每 2 天自動執行一次 (Cron 語法)
+on:
+  schedule:
+    - cron: '0 0 */2 * *'
+  workflow_dispatch: # 允許手動點擊執行測試
+
+jobs:
+  ping-database:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase REST API
+        run: |
+          curl -X GET "https://ovsewspmytfanacoirrp.supabase.co/rest/v1/game_state?limit=1" \
+          -H "apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im92c2V3c3BteXRmYW5hY29pcnJwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkyMDg1NjYsImV4cCI6MjA5NDc4NDU2Nn0.l9-njgTjOslN3GKZxLQuwj1-EzdhdbNtgNdatyDJs3o" \
+          -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im92c2V3c3BteXRmYW5hY29pcnJwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkyMDg1NjYsImV4cCI6MjA5NDc4NDU2Nn0.l9-njgTjOslN3GKZxLQuwj1-EzdhdbNtgNdatyDJs3o"
